@@ -512,7 +512,8 @@ jobs:
                 ;;
             esac
           fi
-          gh release create "$TAG" --generate-notes --draft $PRERELEASE
+          # Attach the license and the third-party notices (see NOTICE).
+          gh release create "$TAG" LICENSE NOTICE --generate-notes --draft $PRERELEASE
 
   # ----------------------------------------------------------------------------
   # Phase 2 (release published): publish the crates to crates.io for real

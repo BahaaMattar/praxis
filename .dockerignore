@@ -13,6 +13,10 @@
 # The default config baked into the images.
 !examples/configs/operations/container-default.yaml
 
+# The license and third-party notices, copied into /licenses in the images.
+!LICENSE
+!NOTICE
+
 # Build output and test artifacts inside the allowed directories.
 **/target/
 **/*.db

@@ -76,6 +76,9 @@ COPY --chown=praxis:praxis --chmod=0444 \
     examples/configs/operations/container-default.yaml \
     /etc/praxis/config.yaml
 
+# The license and the third-party notices (see NOTICE).
+COPY --chown=root:root --chmod=0444 LICENSE NOTICE /licenses/
+
 USER praxis:praxis
 
 WORKDIR /etc/praxis

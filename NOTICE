@@ -1,0 +1,67 @@
+Praxis
+Copyright (c) 2024 Praxis Contributors
+
+Praxis is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Praxis depends on the following software that is not a plain upstream crate.
+Each entry says where it comes from, its license, and why Praxis carries it.
+
+-------------------------------------------------------------------------------
+Pingora (fork)
+-------------------------------------------------------------------------------
+
+Crates:  quixotic-plecostomus-cache, quixotic-plecostomus-core,
+         quixotic-plecostomus-error, quixotic-plecostomus-header-serde,
+         quixotic-plecostomus-http, quixotic-plecostomus-lru,
+         quixotic-plecostomus-pool, quixotic-plecostomus-proxy,
+         quixotic-plecostomus-runtime, quixotic-plecostomus-rustls,
+         quixotic-plecostomus-timeout
+Source:  https://github.com/praxis-proxy/pingora, a fork of Cloudflare
+         Pingora (https://github.com/cloudflare/pingora) maintained by the
+         Praxis project
+License: Apache License, Version 2.0
+Why:     Upstream Pingora does not expose all of the TLS customization hooks
+         and proxy body handling that Praxis needs. The fork's functional
+         changes from upstream are listed in FORK.md in the fork's
+         repository. The fork is intended to be temporary.
+
+-------------------------------------------------------------------------------
+rustls-openssl (vendored)
+-------------------------------------------------------------------------------
+
+Crate:   quixotic-plecostomus-rustls-openssl (library name rustls_openssl)
+Source:  a vendored copy of rustls-openssl 0.4.1
+         (https://github.com/tofay/rustls-openssl) with FIPS
+         provider-routing fixes, published from the Pingora fork above
+License: MIT
+Why:     Praxis installs it at startup as its rustls cryptography provider,
+         so TLS cryptography runs in the system OpenSSL. This is what lets
+         the FIPS build use the OpenSSL FIPS provider.
+
+The rustls-openssl license follows.
+
+Copyright (c) 2024 Tom Fay <tom@teamfay.co.uk>
+
+Permission is hereby granted, free of charge, to any
+person obtaining a copy of this software and associated
+documentation files (the "Software"), to deal in the
+Software without restriction, including without
+limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software
+is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice
+shall be included in all copies or substantial portions
+of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
+SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.

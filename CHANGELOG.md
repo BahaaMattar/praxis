@@ -19,6 +19,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- Add a `NOTICE` file for the dependencies that are not plain upstream
+  crates: the Pingora fork and the vendored rustls-openssl provider, with
+  where each comes from, its license and why Praxis carries it. Both
+  container images ship it with `LICENSE` in `/licenses`, and releases
+  attach both files.
+
 - Add `shutdown_drain_delay_secs` for readiness-first SIGTERM handoff. The
   process becomes unready, waits for the configured delay, then begins
   graceful connection shutdown; HTTP/1 responses during the drain advertise
